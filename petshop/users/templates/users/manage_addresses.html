@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Addresses</title>
+</head>
+<body>
+    <h2>Manage Addresses</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Address</button>
+    </form>
+    <h3>Current Addresses</h3>
+    <ul>
+        {% for address in addresses %}
+            <li>{{ address.address_line1 }}, {{ address.city }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'profile' %}">Back to Profile</a>
+</body>
+</html>

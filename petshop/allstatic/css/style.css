@@ -1,0 +1,402 @@
+/* FONT VAZIR ALL HTML */
+@font-face {
+    font-family: 'Vazir';
+    src: url('/static/css/fonts/vazir.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font-family: 'Vazir';
+    color: #444;
+    background: #fafafa;
+    
+}
+a{
+    text-decoration: none;
+}
+
+
+/* INPUT SEARCH IN NAVBAR */
+.bg-search{
+    background-color: rgb(240 240 240)
+}
+
+.noborderfocus {
+    border: none !important;
+    box-shadow: none !important;
+}
+.noborderfocus:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.highlighted {
+    position: relative;
+    z-index: 1000;
+}
+#search-suggestions {
+    display: none;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+body.focused #search-suggestions {
+    display: block;
+}
+/* NAVBAR PAIIN HOVER */
+
+.menu-item {
+    position: relative;
+}
+
+.submenu, .subsubmenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 200px;
+}
+
+.menu-item:hover > .submenu,
+.submenu-item:hover > .subsubmenu {
+    display: block;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu > .menu-item {
+    float: left;
+    margin-right: 20px;
+}
+
+.submenu, .subsubmenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu > .submenu-item,
+.subsubmenu > .subsubmenu-item {
+    position: relative;
+}
+
+/* DOG & CAT  */
+.bg-Cat{
+    background: linear-gradient(65deg,#ff3333,#F84F55);
+    height: 60%;
+}
+.bg-Dog {
+  
+    background: linear-gradient(65deg,#0091ffde,#0090FF);
+    height: 60%;
+
+}
+
+
+.UP:hover {
+    animation: up 1s infinite;
+}
+
+@keyframes up {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 5px; /* فاصله‌ای که دیو حرکت می‌کند */
+    }
+    100% {
+        top: 0;
+    }
+}
+
+.fixed-bottom-options {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa;
+    padding: 3px;
+}
+
+
+.DOWN:hover{
+    animation: DOWN 1s infinite;
+
+}
+
+@keyframes DOWN {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -5px; /* فاصله‌ای که دیو حرکت می‌کند */
+    }
+    100% {
+        top: 0;
+    }
+}
+
+/* PRODUCT SLIDER */
+.product-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px
+  }
+  .product-details {
+    text-align: center;
+    padding: 10px;
+  }
+  .product-name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .product-price {
+    color: green;
+    font-size: 1.1em;
+  }
+  .product-description {
+    font-size: 0.9em;
+    color: #555;
+  }
+  .owl-carousel .item {
+    display: flex;
+    flex-direction: column;
+    
+    
+  }
+.item{
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.item:hover{
+    transform: translateY(-10px);
+}
+
+.bg-money{
+    background: linear-gradient(to right, #4e9 , #1b6);
+    box-shadow: 0 10px 10px -10px #0c1;
+}
+.text-hover {
+    color: black;
+}
+.text-hover:hover{
+color: white;
+}
+
+.containers {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.big-box {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.small-box-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+.img-fixed-height {
+    height: auto; /* تنظیم پیش‌فرض */
+  }
+
+  @media (max-width: 576px) {
+    .img-fixed-height{
+      object-fit: contain; /* اطمینان از اینکه تصویر به درستی برش داده می‌شود و تناسب حفظ می‌شود */
+    }
+  }
+
+.small-box {
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.bg-moneylevel1{
+    background-color:rgba(51, 240, 13, 0.2);
+    border: 1px solid #20f00d;
+}
+.bg-moneylevel1:hover{
+    border: 2px solid #20f00d;
+
+}
+
+
+.bg-moneylevel2{
+    background-color:rgba(51, 240, 13, 0.3);
+    border: 1px solid #20f00d;
+}
+.bg-moneylevel2:hover{
+    border: 2px solid #20f00d;
+
+}
+
+
+.bg-moneylevel3{
+    background-color:rgba(51, 240, 13, 0.4);
+    border: 1px solid #20f00d;
+}
+.bg-moneylevel3:hover{
+    border: 2px solid #20f00d;
+
+}
+
+
+.bg-moneylevel4{
+    background-color:rgba(51, 240, 13, 0.5);
+    border: 1px solid #20f00d;
+}
+.bg-moneylevel4:hover{
+    border: 2px solid #20f00d;
+
+}
+
+
+.bg-moneylevel5{
+    background-color:rgba(51, 240, 13, 0.6);
+    border: 1px solid #20f00d;
+}
+.bg-moneylevel5:hover{
+    border: 2px solid #20f00d;
+
+}
+
+
+.bg-moneylevel6{
+    background-color:rgba(51, 240, 13, 0.7);
+    border: 1px solid #20f00d;
+}
+.bg-moneylevel6:hover{
+    border: 2px solid #20f00d;
+
+}
+
+
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+.footer .social-media {
+    display: flex;
+    align-items: center;
+}
+.footer .social-media img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+.footer .social-media a {
+    margin-left: 10px;
+    font-size: 20px;
+    color: #000;
+}
+.footer .column-links {
+    list-style-type: none;
+    padding: 0;
+}
+.footer .column-links li {
+    margin: 5px 0;
+}
+.footer .column-links a {
+    text-decoration: none;
+    color: #000;
+}
+.footer .column-links a:hover {
+    text-decoration: underline;
+}
+
+.bg-age1{
+    background-color:rgba(255,55,55, 0.2);
+    border: 1px solid #ff2222;
+}
+
+
+.bg-age1:hover{
+    border: 2px solid #ff2222;
+}
+
+
+
+.bg-age2{
+    background-color:rgba(13,202,240, 0.2);
+    border: 1px solid #0dcaf0;
+}
+
+
+.bg-age2:hover{
+    border: 2px solid #0dcaf0;
+}
+
+
+
+.bg-age3{
+    background-color:rgba(250, 246, 2, 0.2);
+    border: 1px solid #ffc107;
+}
+
+
+.bg-age3:hover{
+    border: 2px solid #ffc107;
+}
+
+
+
+.bg-age4{
+    background-color:rgba(2, 112, 255, 0.2);
+    border: 1px solid #0d6efd;
+}
+
+
+.bg-age4:hover{
+    border: 2px solid #0d6efd;
+}
+
+
+
+.bg-age5{
+    background-color:rgba(179, 176, 40, 0.2);
+    border: 1px solid #b0882c;
+}
+
+
+.bg-age5:hover{
+    border: 2px solid #b0882c;
+}
+
+
+
+.bg-age6{
+    background-color:rgba(32, 153, 83, 0.2);
+    border: 1px solid #198754;
+}
+
+
+.bg-age6:hover{
+    border: 2px solid #198754;
+}
+
+
+.owl-carousel .item img {
+    width: 100%; /* عرض تصویر به اندازه کامل باکس */
+    height: auto; /* حفظ نسبت تصویر */
+    max-height: 300px; /* حداکثر ارتفاع تصویر */
+}

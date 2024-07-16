@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'manage_addresses' %}">Manage Addresses</a>
+    <a href="{% url 'order_history' %}">Order History</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

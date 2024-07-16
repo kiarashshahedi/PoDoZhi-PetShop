@@ -1,0 +1,96 @@
+{% extends "products/base.html" %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}Products{% endblock %}
+{% block style %}
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-card {
+    width: 30%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    margin: 0 0 10px 0;
+}
+
+.product-card p {
+    margin: 0 0 10px 0;
+    color: #555;
+}
+
+.product-card p strong {
+    color: #000;
+</style>
+{% endblock %}
+{% block body %}
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>{{ main_category.name }}</h1>
+
+        <!-- Subcategories -->
+        <h2>Subcategories</h2>
+        <ul>
+            {% for sub_category in main_category.sub_categories.all %}
+            <li>
+                <a href="{% url 'sub_category' sub_category.id %}">{{ sub_category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Products -->
+        <h2>Products</h2>
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p><strong>Price:</strong> {{ product.price }} Toman</p>
+                <p><strong>Availability:</strong> {% if product.availability %}In Stock{% else %}Out of Stock{% endif %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

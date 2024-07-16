@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p>قیمت: {{ product.price }}</p>
+    <div>
+        {% for image in product.images.all %}
+            <img src="{{ image.image.url }}" alt="{{ product.name }}">
+        {% endfor %}
+    </div>
+    <p>موجودی: {{ product.stock }}</p>
+    <p>تاریخ انقضا: {{ product.expire_date }}</p>
+    <!-- Add other fields as necessary -->
+</body>
+</html>

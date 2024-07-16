@@ -1,0 +1,187 @@
+{% extends "products/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block style %}
+<style>
+    .zoom-effect-container {
+        position: relative;
+        overflow: hidden;
+    }
+    .zoom-effect-container img {
+        transform: scale(1.6);
+        transition: transform 0.5s ease;
+    }
+    .zoom-effect-container:hover img {
+        transform: scale(2.9);
+    }
+    
+</style>
+{% endblock %}
+{% block body %}
+
+<!-- BANNER SLIDER  -->
+<section>
+    <div class="container-fluid mt-1">
+        <div class="row">
+            <div class="col-12 ">
+                <div id="carouselExampleIndicators" class="carousel slide">
+
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+
+                        <a href="">
+                            <div class="carousel-item active">
+                                <img src="{% static 'img/slider1.jpg' %}" class="d-block w-100 img-fixed-height" alt="...">
+                            </div>
+                        </a>
+
+                        <a href="">
+                            <div class="carousel-item">
+                                <img src="{% static 'img/slider2.jpg' %}" class="d-block w-100 img-fixed-height" alt="...">
+                            </div>
+                        </a>
+
+                        <a href="">
+                            <div class="carousel-item">
+                                <img src="{% static 'img/slider3.jpg' %}" class="d-block w-100 img-fixed-height" alt="...">
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon me-5" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon ms-5" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DOG & CAT -->
+<div class="container-fluid bg-white mt-4 text-center">
+    <div class="row ">
+
+        <div class="col-12 col-md-6  position-relative UP ">
+            <a href="">
+                <div class="">
+                    <img  class="img-fluid UP" src="{% static 'img/catproducts.jpg' %}" alt="">
+                </div>               
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 DOWN position-relative ">
+            <a href="">
+                <div class=" ">
+                    <img class="img-fluid"  src="{% static 'img/dogproducts.jpg' %}" alt="">
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- products sliders -->
+<div class="container mt-3">
+    {% for animal_type_data in animal_types_with_subcategories %}
+        {% for subcategory_data in animal_type_data.subcategories_with_products %}
+            <div class="mx-4">
+                <p class="fw-bold">{{ subcategory_data.sub_category.name }}</p>
+            </div>
+
+            <div class="container mt-1">
+                <div class="owl-carousel border border-2 p-3 rounded-4 owl-theme bg-white shadow">
+                    {% for product_pair in subcategory_data.product_pairs %}
+                    {% for product in product_pair %}
+                        <div class="item rounded-4" style="">
+
+                            {% with first_image=product.images.first %}
+                            {% if first_image %}
+                                <div class="zoom-effect-container">
+                                    <img src="{{ first_image.image.url }}" alt="{{ product.name }}" class="img-fluid mt-1">
+                                </div>
+                            {% endif %}
+                            {% endwith %}
+
+                            <div class="product-details flex-grow-1 d-flex flex-column justify-content-between">
+                                <div class="product-name">
+                                    <small><small><small>{{ product.name|truncate_words:5 }}</small></small></small>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success mt-auto">
+                                <small><small>{{ product.price|format_price }} تومان</small></small> 
+                            </button>
+                        </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if forloop.counter|divisibleby:2 %}
+            <!-- banner slider  -->
+            <div class="container-fluid mt-1">
+                <div class="row">
+                    <div class="col-12 ">
+
+                        <div id="carouselExampleIndicators" class="carousel slide">
+                            <div class="carousel-inner">
+                                <a href="#">
+                                    <div class="carousel-item active">
+                                        <img src="{% static 'img/slider1.jpg' %}" class="d-block w-100 img-fixed-height" alt="...">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+
+
+
+<!-- 2 RED ROYALCANIN DOG-CAT -->
+<div class="container-fluid bg-white mt-4">
+    <div class="row ">
+
+        <div class="col-12 col-md-6  position-relative UP ">
+            <a href="">
+                <div class="">
+                    <img  class="img-fluid UP" src="{% static 'bnnrimg/bnnr2.webp' %}" alt="">
+                </div>               
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 DOWN position-relative ">
+            <a href="">
+                <div class="">
+                    <img class="img-fluid"  src="{% static 'bnnrimg/bnnr3.webp' %}" alt="">
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

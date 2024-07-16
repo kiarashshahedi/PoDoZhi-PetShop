@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+</head>
+<body>
+    <h2>Order History</h2>
+    <ul>
+        {% for order in orders %}
+            <li>Order {{ order.id }} - {{ order.order_date }} - ${{ order.total_amount }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'profile' %}">Back to Profile</a>
+</body>
+</html>
