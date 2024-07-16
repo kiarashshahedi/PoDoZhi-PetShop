@@ -16,7 +16,24 @@
     .zoom-effect-container:hover img {
         transform: scale(2.9);
     }
-    
+    .product-item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s ease;
+    }
+    .product-item:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .product-name small {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .product-price {
+        font-size: 1rem;
+        color: #28a745;}
 </style>
 {% endblock %}
 {% block body %}
@@ -95,15 +112,37 @@
     </div>
 </div>
 
+<!-- 2 RED ROYALCANIN DOG-CAT -->
+<div class="container-fluid bg-white mt-4">
+    <div class="row ">
+
+        <div class="col-12 col-md-6  position-relative UP ">
+            <a href="">
+                <div class="">
+                    <img  class="img-fluid UP" src="{% static 'bnnrimg/bnnr2.webp' %}" alt="">
+                </div>               
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 DOWN position-relative ">
+            <a href="">
+                <div class="">
+                    <img class="img-fluid"  src="{% static 'bnnrimg/bnnr3.webp' %}" alt="">
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
 <!-- products sliders -->
 <div class="container mt-3">
     {% for animal_type_data in animal_types_with_subcategories %}
         {% for subcategory_data in animal_type_data.subcategories_with_products %}
             <div class="mx-4">
-                <p class="fw-bold">{{ subcategory_data.sub_category.name }}</p>
+                <h5 class="fw-bold text-center text-danger">- {{ subcategory_data.sub_category.name }} -</h5>
             </div>
-
-            <div class="container mt-1">
+            <div class="container mt-3 mb-3 ">
                 <div class="owl-carousel border border-2 p-3 rounded-4 owl-theme bg-white shadow">
                     {% for product_pair in subcategory_data.product_pairs %}
                     {% for product in product_pair %}
@@ -130,58 +169,41 @@
                     {% endfor %}
                     {% endfor %}
                 </div>
-            </div>
-
-            {% if forloop.counter|divisibleby:2 %}
-            <!-- banner slider  -->
-            <div class="container-fluid mt-1">
-                <div class="row">
-                    <div class="col-12 ">
-
-                        <div id="carouselExampleIndicators" class="carousel slide">
-                            <div class="carousel-inner">
-                                <a href="#">
-                                    <div class="carousel-item active">
-                                        <img src="{% static 'img/slider1.jpg' %}" class="d-block w-100 img-fixed-height" alt="...">
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-        
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+            </div>         
         {% endfor %}
     {% endfor %}
 </div>
 
 
+<!-- Random Products Section -->
+<div class="container mt-4">
+    <h5 class="text-center fw-bold text-danger">محصولات تصادفی</h5>
+    <div class="row">
+        {% for random_product in random_products %}
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="product-item rounded-4 shadow border border-1 border-warning">
 
-<!-- 2 RED ROYALCANIN DOG-CAT -->
-<div class="container-fluid bg-white mt-4">
-    <div class="row ">
+                    {% with first_image=random_product.images.first %}
+                    {% if first_image %}
+                        <div class="zoom-effect-container ">
+                            <img src="{{ first_image.image.url }}" alt="{{ random_product.name }}" class="img-fluid mt-1">
+                        </div>
+                    {% endif %}
+                    {% endwith %}
 
-        <div class="col-12 col-md-6  position-relative UP ">
-            <a href="">
-                <div class="">
-                    <img  class="img-fluid UP" src="{% static 'bnnrimg/bnnr2.webp' %}" alt="">
-                </div>               
-            </a>
-        </div>
-
-        <div class="col-12 col-md-6 DOWN position-relative ">
-            <a href="">
-                <div class="">
-                    <img class="img-fluid"  src="{% static 'bnnrimg/bnnr3.webp' %}" alt="">
+                    <div class="product-details flex-grow-1 d-flex flex-column justify-content-between">
+                        <div class="product-name">
+                            <small><small><small>{{ random_product.name|truncate_words:5 }}</small></small></small>
+                        </div>
+                        <button class="btn btn-success mt-auto">
+                            <small><small>{{ random_product.price|format_price }} تومان</small></small> 
+                        </button>
+                    </div>
                 </div>
-            </a>
-        </div>
-
+            </div>
+        {% endfor %}
     </div>
 </div>
-
-
 
 
 {% endblock %}

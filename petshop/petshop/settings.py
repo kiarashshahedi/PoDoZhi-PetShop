@@ -8,8 +8,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +18,6 @@ SECRET_KEY = 'django-insecure-_=!rl))#uj#rau6$!hca^1qo+1g48-ri@lx)a9dmb97c!!g!37
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -106,7 +103,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'allstatic')  # Dummy value for development
+STATIC_ROOT = os.path.join(BASE_DIR, 'allstatic')  
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
