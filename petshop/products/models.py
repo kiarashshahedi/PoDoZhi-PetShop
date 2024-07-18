@@ -1,7 +1,10 @@
 from django.db import models
+from petshop import settings
+import datetime
+from users.models import MyUser
 
 # animal type 
-class AnimalType(models.Model):
+class Type(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -11,7 +14,7 @@ class AnimalType(models.Model):
 #category of products
 class MainCategory(models.Model):
     name = models.CharField(max_length=100)
-    animal_type = models.ForeignKey(AnimalType, related_name='main_categories', on_delete=models.CASCADE)
+    animal_type = models.ForeignKey(Type, related_name='main_categories', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -56,7 +59,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name='تخفیف')
     featured_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, verbose_name='قیمت تخفیف خورده')
     slug = models.SlugField(max_length=255, unique=True, blank=True)
-
+    
     
     
 # product images 
@@ -74,3 +77,33 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
+#the rate of the product
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    rating = models.IntegerField(null=True, blank=True)  # Rating (1 to 5 stars)
+    comment = models.TextField(null=True, blank=True)  # Comment text
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = []
+
+
+    def __str__(self):
+        return f"Review for {self.product.name} by {self.user.username}"
+
+#Customers Order
+class Order(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    customer = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='customer_orders', related_query_name='customer_order')  # Add related_name and related_query_name
+    quantity = models.IntegerField(default=1)
+    address = models.CharField(max_length=100, default='', blank=True)
+    phone = models.CharField(max_length=20, default='', blank=True)
+    date = models.DateField(default=datetime.datetime.today)
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.product
+    

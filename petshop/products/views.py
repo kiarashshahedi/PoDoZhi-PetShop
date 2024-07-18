@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import MainCategory, Product, SubCategory, AnimalType
-import random
+from .models import MainCategory, Product, SubCategory, Type
+from .forms import ReviewForm
 
 # Home Page List Of Products
 def product_list(request):
     
     animal_types_with_subcategories = []
-    animal_types = AnimalType.objects.all()
+    animal_types = Type.objects.all()
 
     for animal_type in animal_types:
         main_categories = MainCategory.objects.filter(animal_type=animal_type)[:1]  # main categories
@@ -41,13 +41,27 @@ def product_list(request):
 
     
 # Products Detail pages 
-def product_detail(request, id):
-    product = get_object_or_404(Product, id=id)
-    return render(request, 'products/product_detail.html', {'product': product})
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    reviews = product.reviews.all()
+    form = ReviewForm()
+    images = product.images.all()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.user = request.user
+            review.save()
+            product.update_ratings()
+            return redirect('product_detail', pk=pk)
+
+    return render(request, 'products/product_details.html', {'product': product, 'reviews': reviews, 'form': form, 'images': images})
 
 # navbar view
 def navbar(request):
-    animal_types = AnimalType.objects.prefetch_related('main_categories__sub_categories').all()
+    animal_types = Type.objects.prefetch_related('main_categories__sub_categories').all()
     return render(request, 'products/.html', {'animal_types': animal_types})
 
 # main Category page

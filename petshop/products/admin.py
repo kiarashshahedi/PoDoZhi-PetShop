@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductImage, Tag, SubCategory, AnimalType, MainCategory
+from .models import Product, ProductImage, Tag, SubCategory, Type, MainCategory
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -42,6 +42,6 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'main_category')
     list_filter = ('main_category',)
 
-admin.site.register(AnimalType, AnimalTypeAdmin)
+admin.site.register(Type, AnimalTypeAdmin)
 admin.site.register(MainCategory, MainCategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
