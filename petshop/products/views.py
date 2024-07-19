@@ -57,7 +57,7 @@ def product_detail(request, pk):
             product.update_ratings()
             return redirect('product_detail', pk=pk)
 
-    return render(request, 'products/product_details.html', {'product': product, 'reviews': reviews, 'form': form, 'images': images})
+    return render(request, 'products/product_detail.html', {'product': product, 'reviews': reviews, 'form': form, 'images': images})
 
 # navbar view
 def navbar(request):

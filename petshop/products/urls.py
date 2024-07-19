@@ -7,7 +7,8 @@ urlpatterns = [
     path('', views.product_list, name='home_product_list'),
     
     # product detail page
-    path('product/<int:id>/', views.product_detail, name='product_detail'),
+    path('product/<int:pk>/', views.product_detail, name='product_detail'),
+
     
     # navbar category list
     path('navbar/', views.navbar, name='navbar'),

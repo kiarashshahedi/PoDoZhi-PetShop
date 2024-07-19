@@ -147,24 +147,26 @@
                     {% for product_pair in subcategory_data.product_pairs %}
                     {% for product in product_pair %}
                         <div class="item rounded-4" style="">
+                            <a href="{% url 'product_detail' product.pk %}" class="text-decoration-none text-dark">
 
-                            {% with first_image=product.images.first %}
-                            {% if first_image %}
-                                <div class="zoom-effect-container">
-                                    <img src="{{ first_image.image.url }}" alt="{{ product.name }}" class="img-fluid mt-1">
+                                {% with first_image=product.images.first %}
+                                {% if first_image %}
+                                    <div class="zoom-effect-container">
+                                        <img src="{{ first_image.image.url }}" alt="{{ product.name }}" class="img-fluid mt-1">
+                                    </div>
+                                {% endif %}
+                                {% endwith %}
+
+                                <div class="product-details flex-grow-1 d-flex flex-column justify-content-between">
+                                    <div class="product-name">
+                                        <small><small><small>{{ product.name|truncate_words:5 }}</small></small></small>
+                                    </div>
                                 </div>
-                            {% endif %}
-                            {% endwith %}
 
-                            <div class="product-details flex-grow-1 d-flex flex-column justify-content-between">
-                                <div class="product-name">
-                                    <small><small><small>{{ product.name|truncate_words:5 }}</small></small></small>
-                                </div>
-                            </div>
-
-                            <button class="btn btn-success mt-auto">
-                                <small><small>{{ product.price|format_price }} تومان</small></small> 
-                            </button>
+                                <button class="btn btn-success mt-auto">
+                                    <small><small>{{ product.price|format_price }} تومان</small></small> 
+                                </button>
+                            </a>
                         </div>
                     {% endfor %}
                     {% endfor %}

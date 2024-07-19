@@ -154,7 +154,7 @@
                         <div class="col-md-6">
                             <p>شما می‌توانید نظر های خود را درباره این کالا در باکس زیر ثبت کنید.</p>
                             {% if user.is_authenticated %}
-                            <form method="post" action="{% url 'add_review' product.id %}">
+                            <form method="post" action="">
                                 {% csrf_token %}
                                 
                                 <div class="rate d-flex">
@@ -243,7 +243,7 @@
     
         $.ajax({
             type: 'POST',
-            url: '{% url 'cart_add' %}',
+            url: '',
             data: {
                 product_id: productID,
                 product_qty: quantity,
